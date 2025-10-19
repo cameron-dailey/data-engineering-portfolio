@@ -1,0 +1,39 @@
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  airflow:
+    image: apache/airflow:2.10.2
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+      AIRFLOW__WEBSERVER__RBAC: "true"
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
+      _PIP_ADDITIONAL_REQUIREMENTS: "pandas sqlalchemy psycopg2-binary openpyxl"
+      PORTFOLIO_DIR: /opt/airflow/dags/portfolio
+      DATABASE_URL: sqlite:////opt/airflow/dags/portfolio/data/warehouse.db
+    depends_on:
+      - postgres
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ../:/opt/airflow/dags/portfolio
+    ports:
+      - "8080:8080"
+    command: >
+      bash -c "
+      airflow db init &&
+      airflow users create --username airflow --password airflow --firstname Air --lastname Flow --role Admin --email admin@example.com &&
+      airflow webserver &
+      airflow scheduler
+      "
+
+volumes:
+  pgdata:

@@ -1,0 +1,19 @@
+# Python virtual environments
+.venv/
+venv/
+env/
+
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+
+# Data files (optional)
+data/warehouse.db
+
+# IDE / OS files
+.DS_Store
+.vscode/
+.idea/
+
+# Airflow / logs
+logs/
