@@ -1,0 +1,48 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:15
+    container_name: steelcity_db
+    restart: always
+    environment:
+      POSTGRES_USER: steelcity
+      POSTGRES_PASSWORD: steelcity
+      POSTGRES_DB: steelcity
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./db/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+
+  app:
+    build: .
+    container_name: steelcity_app
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgresql+psycopg2://steelcity:steelcity@db:5432/steelcity
+    ports:
+      - "8501:8501"
+    command: >
+      bash -c "
+      echo 'Starting Steel City Ops Analytics...';
+      echo 'Waiting for PostgreSQL to be ready...';
+      until pg_isready -h db -p 5432 -U steelcity; do
+        echo 'Postgres is still starting up...';
+        sleep 2;
+      done;
+      echo ' Postgres is ready. Starting ETL pipelines...';
+      python pipelines/ingest/etl_bookings.py &&
+      python pipelines/ingest/etl_weather.py &&
+      python pipelines/ingest/etl_maintenance.py &&
+      python pipelines/transform/build_features.py &&
+      echo ' ETL complete. Launching Streamlit dashboard...' &&
+      streamlit run analytics/dashboards/streamlit_app.py --server.port=8501 --server.address=0.0.0.0"
+
+    volumes:
+      - .:/app
+      - ./data:/app/data 
+
+volumes:
+  pgdata:

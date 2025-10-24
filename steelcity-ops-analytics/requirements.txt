@@ -1,0 +1,8 @@
+pandas
+numpy
+SQLAlchemy
+python-dotenv
+scikit-learn
+streamlit
+plotly
+psycopg2-binary
