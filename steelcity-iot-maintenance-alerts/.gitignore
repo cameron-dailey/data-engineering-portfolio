@@ -1,0 +1,57 @@
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+*.db
+*.log
+*.csv
+.DS_Store
+
+# --- Virtual Environment ---
+.venv/
+env/
+venv/
+ENV/
+*.env
+.env*
+
+# --- Jupyter / IPython ---
+.ipynb_checkpoints/
+*.ipynb
+
+# --- VSCode / IDE ---
+.vscode/
+.idea/
+*.code-workspace
+
+# --- Streamlit Cache ---
+.streamlit/
+.streamlit/cache/
+.streamlit/secrets.toml
+
+# --- Docker ---
+*.pid
+*.pid.lock
+docker-compose.override.yml
+volumes/
+**/pgdata/
+**/tmp/
+
+# --- Build Artifacts ---
+build/
+dist/
+*.egg-info/
+
+# --- OS Files ---
+Thumbs.db
+ehthumbs.db
+Icon?
+desktop.ini
+
+# --- Temporary Files ---
+tmp/
+temp/
+logs/
+
