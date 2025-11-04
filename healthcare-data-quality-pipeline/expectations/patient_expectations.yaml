@@ -1,0 +1,16 @@
+expectations:
+  - expect_table_row_count_to_be_greater_than:
+      value: 0
+  - expect_column_to_exist:
+      column: patient_id
+  - expect_column_values_to_not_be_null:
+      column: patient_id
+  - expect_column_values_to_be_in_set:
+      column: event_type
+      value_set: ["admit","transfer","discharge"]
+  - expect_column_values_to_not_be_null:
+      column: event_time
+  - expect_column_pair_values_A_to_be_less_than_B:
+      column_A: first_admit
+      column_B: last_discharge
+      table: warehouse.patient_stay_summary

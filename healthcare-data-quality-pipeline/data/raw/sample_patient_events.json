@@ -1,0 +1,26 @@
+[
+  {
+    "patient_id": 100123,
+    "event_type": "admit",
+    "unit": "ER",
+    "bed_id": "ER-001",
+    "event_time": "2025-11-03T12:00:00Z",
+    "mrn": "100123"
+  },
+  {
+    "patient_id": 100123,
+    "event_type": "transfer",
+    "unit": "ICU",
+    "bed_id": "ICU-002",
+    "event_time": "2025-11-03T14:00:00Z",
+    "mrn": "100123"
+  },
+  {
+    "patient_id": 100123,
+    "event_type": "discharge",
+    "unit": "ICU",
+    "bed_id": "ICU-002",
+    "event_time": "2025-11-03T18:00:00Z",
+    "mrn": "100123"
+  }
+]
