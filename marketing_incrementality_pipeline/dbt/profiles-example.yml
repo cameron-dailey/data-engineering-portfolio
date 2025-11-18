@@ -1,0 +1,7 @@
+marketing_incrementality:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: ./marketing_incrementality.duckdb
+      schema: main

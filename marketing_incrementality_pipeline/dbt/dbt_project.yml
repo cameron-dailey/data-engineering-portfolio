@@ -1,0 +1,5 @@
+name: marketing_incrementality
+version: 1.0
+config-version: 2
+profile: marketing_incrementality
+model-paths: ["models"]

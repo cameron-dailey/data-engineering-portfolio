@@ -1,0 +1,15 @@
+pandas
+numpy
+scikit-learn
+streamlit
+duckdb
+sqlalchemy
+plotly
+
+# dbt core + duckdb adapter
+dbt-core
+dbt-duckdb
+
+# optional but recommended for your notebook version
+matplotlib
+seaborn

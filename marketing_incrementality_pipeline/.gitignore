@@ -1,0 +1,11 @@
+venv/
+__pycache__/
+*.db
+*.duckdb
+*.pyc
+.dbt/
+logs/
+data/raw/*
+data/processed/*
+.DS_Store
+.env
